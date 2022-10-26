@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+        
+          
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+.head1 {
+    font-size:40px;
+    color:#008099;
+    font-weight:bold;
+    background-color: #333;
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+footer {
+    width: 100%;
+    bottom: 0px;
+    background-color: #333;
+    color: #fff;
+    position: absolute;
+    text-align:right;
+    font-size:10px;
+}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+    <header>
+        <div class="head1">HubIt</div>
+
+    
+  <a href="http://localhost:5000/account">Account</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+</header>
+</div>
+</body>
+</html>
+{% block header%}
+{% endblock %}
+  </head>
+  <footer>
+    <div id="footer">
+    <p>&copy; Copyright 2022 by <a href="https://www.minerva.edu/"> Minerva University </a>.</p>
+    </div>
+</footer>
+</html>
