@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{%import "bootstrap/wtf.html" as wtf %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,18 +18,15 @@
         }
     </style>
     <div style="text-align: center;">
-        <form>
+        <form class="form-signin" action="http://localhost:5000/register" method="post">
         <div style="display: inline-block; text-align: left;">
             <h1>Register</h1> <br />
-            <input type="Email" name = 'em', placeholder="Email"/></p>
-            <br />
-           <input type='text' name ='nm', placeholder="Username"/></p>
-            <br />
-            <input type="password" name = 'pw', placeholder="Password"/></p>
-            <br />
-
-        <p><input type="submit" value="Sign Up"></p>
-        Already have an account? <p><a href="http://localhost:5000/
+            {{ form.hidden_tag() }}
+            {{ wtf.form_field(form.username) }}
+            {{ wtf.form_field(form.email) }}
+            {{ wtf.form_field(form.password) }}
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+        Already have an account? <p><a href="http://localhost:5000/login
             ", style = "...">Log In</a></p>
         </form>
 

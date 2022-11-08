@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
         
-          
-<head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
@@ -12,10 +10,11 @@
     font-weight:bold;
     background-color: #333;
 }
+
 body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
+    font-family: verdana;
+    font-size: 15px; 
+  }
 
 .topnav {
   overflow: hidden;
@@ -50,22 +49,21 @@ footer {
     text-align:right;
     font-size:10px;
 }
+
 </style>
-</head>
-<body>
 
 <div class="topnav">
     <header>
-        <div class="head1">HubIt</div>
+      <div class="head1">HubIt</div></header>
 
     
+    <body>  
   <a href="http://localhost:5000/account">Account</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-</header>
+  <a href="http://localhost:5000/habits">Habits</a>
+  <a href="http://localhost:5000/calendar">Calendar</a>
+  <a href="http://localhost:5000/summary">Summary</a>
+    </body>
 </div>
-</body>
 </html>
 {% block header%}
 {% endblock %}
