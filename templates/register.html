@@ -24,12 +24,11 @@
             {{ form.hidden_tag() }}
             {{ wtf.form_field(form.username) }}
             {{ wtf.form_field(form.email) }}
-            {{ wtf.form_field(form.password) }}
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
-        Already have an account? <p><a href="http://localhost:5000/login
-            ", style = "...">Log In</a></p>
+            {{ wtf.form_field(form.password) }}<label>🔑</label>
+        </br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" href="http://localhost:5000/signup">Sign Up</a></button>
+        Already have an account? <p><a href="http://localhost:5000/", style = "...">Log In</a></p>
         </form>
-
         </div>
     </div>
 </head>

@@ -1,4 +1,35 @@
 {% extends "layout.html" %}
 {% block header%}
-<h1>Habits will be displayed on this page</h1>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+<h2>**Long-term Goal Displayed**</h2>
+
+<h1 contenteditable="true">Habit1</h1>
+<progress  id="file" max="100" value="70" height='100px'> 70% </progress>
+<h1 contenteditable="true">Habit2</h1>
+<progress id="file" max="100" value="30" height='50px'> 70% </progress>
+
+<h1 contenteditable="true">Habit3</h1>
+<progress id="file" max="100" value="90" height='50px'> 70% </progress>
+
 {% endblock %}
+
+progress {
+    border-radius: 7px; 
+    width: 80%;
+    height: 22px;
+    margin-left: -11.5%;
+    box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );
+}
+progress::-webkit-progress-bar {
+    background-color: yellow;
+    border-radius: 7px;
+}
+progress::-webkit-progress-value {
+    background-color: blue;
+    border-radius: 7px;
+    box-shadow: 1px 1px 5px 3px rgba( 255, 0, 0, 0.8 );
+}
+progress::-moz-progress-bar {
+    /* style rules */
+}

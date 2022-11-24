@@ -17,14 +17,14 @@
         }
     </style>
     <div style="text-align: center;">
-        <form action="http://localhost:5000/login" method="post">
+        <form action="http://localhost:5000/" method="post">
         <div style="display: inline-block; text-align: left;">
             <h1>Login Page</h1> <br />
             {{ form.hidden_tag() }}
             {{ wtf.form_field(form.username) }}
             {{ wtf.form_field(form.password) }}
             {{ wtf.form_field(form.remember) }}
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit"><a href="http://localhost:5000/homepage">Sign In</a></button>
             Don't have an account yet? 
         <p>             Click <a href="http://localhost:5000/register", style = "...">here</a> to register.</p>
 
