@@ -25,11 +25,19 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(50), unique=True, nullable = False)
     email = db.Column(db.String(50), unique=True, nullable = False)
     password = db.Column(db.String(80), nullable = False)
-    date_added = db.Column(db.DateTime, default=datetime.now())
+    #date_added = db.Column(db.DateTime, default=datetime.now())
     
     def __repr__(self):
         return "<Name %r>" % self.username
 
+class Big_goal(db.Model):
+    id = db.Column(db.Integer, primary_key = True )
+    goal = db.Column(db.String(1000), nullable = False)
+    date_added = db.Column(db.DateTime, default=datetime.now())
+
+    def __repr__(self):
+        return "<Goal %r>" % self.goal
+        
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
@@ -50,8 +58,8 @@ class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired(), Length(min=4, max=50)])
     password = PasswordField('Password', validators=[InputRequired(), Length(min=4, max=80)])       
     
-#class IntentionForm(FlaskForm):
-#    intention = StringField('Intention', validators=[InputRequired(), Length(max=max)])            
+class Goal(FlaskForm):
+    Goal = StringField('goal', validators=[InputRequired(), Length(min=1, max=1000)])            
 
 with app.app_context():
     db.create_all()
@@ -60,11 +68,19 @@ with app.app_context():
 @app.route('/homepage', methods=['GET','POST'])
 #@login_required
 def homepage():
-#    form=IntentionForm
-#    if form.validate_on_submit():
-        #return render_template('signup.html', form=form)
+    form=Goal()
+    if request.method == "POST":
+        #if form.validate_on_submit():
+        goal = request.form.get('goal')
+        new_goal = Big_goal(goal=goal)
+        #print('CREATED user', new_user.username)
+        
+        db.session.add(new_goal)
+        db.session.commit()
+        print(f'submitted long-term goal: {goal}')
+        return redirect(url_for('habits'))
     
-    return render_template("homepage.html")
+    return render_template("homepage.html", form=form)
 
 @app.route('/signup')
 def signup():
@@ -81,7 +97,7 @@ def login():
             remember = True if form.password.data else False
 
             user = User.query.filter_by(username=username).first()
-
+            print(user)
             # check if the user actually exists
             # take the user-supplied password, hash it, and compare it to the hashed password in the database
             if not user or not check_password_hash(user.password, password):
@@ -89,7 +105,7 @@ def login():
                 #print('invalid data')
                 return redirect(url_for('login'))
                 
-            return render_template("login.html")
+            return redirect(url_for("habits"))
     
     return render_template("login.html", form=form)
 
@@ -115,20 +131,27 @@ def register():
         form.username.data = ' '
         form.email.data = ' '
         flash('User added successfully!')
-        #print(name, user)     
+        #print(name, user)    
+        return render_template("homepage.html") 
     return render_template("register.html", form=form)
 
 @app.route('/habits')
-def account():
-    return render_template("habits.html")
+def habits():
+    goal = Big_goal.query.order_by(Big_goal.date_added.desc()).first()
+    print(f"retrieved your goal {goal}")
+    return render_template("habits.html", goal=goal.goal)
 
 @app.route('/tree')
 def summary():
-    return render_template("tree.html")
+    goal = Big_goal.query.order_by(Big_goal.date_added.desc()).first()
+    print(f"retrieved your goal {goal}")
+    return render_template("tree.html", goal=goal.goal)
 
 @app.route('/badges')
 def calendar():
-    return render_template("badges.html")
+    goal = Big_goal.query.order_by(Big_goal.date_added.desc()).first()
+    print(f"retrieved your goal {goal}")
+    return render_template("badges.html", goal=goal.goal)
 
 
 @app.route("/logout")

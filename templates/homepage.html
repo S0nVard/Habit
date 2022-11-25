@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
+  .tooltip {
+    position: relative;
+  }
+  
+  .tooltip .tooltiptext {
+    font-size: 17px;
+    visibility: hidden;
+    width: 120px;
+    background-color: #D5BAEA;
+    color: black;
+    text-align: center;
+    border-radius: 4px;
+    padding: 1px 0;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
     form {
         margin: 50px;
         padding: 5px;
         display: inline-block;
+        position: absolute;
+  
       }
       
       form input {
@@ -64,11 +92,18 @@ body {
 </style>
 
 <body>
-    <form action="http://localhost:5000/signup", method="post" >
-        <br>What is your long-term goal?</br>
-        <input type='text', placeholder = "E.g. Be a better friend."/></br>
+    <form action="{{ url_for("homepage")}}", method="post" >
+        <br><div class="tooltip">What is your long-term goal?
+          <span class="tooltiptext">This should be the goal that you want to work on for the next 3 weeks.</span>
+        </div></br>
+        <input type="text" name="goal" placeholder = "E.g. Be a better friend."/></br>
+        <button class="button-37" type="submit">Start</button>
     </form></br>
-    <button class="button-37" role="button"  onclick="http://localhost:5000/signup">Start</button>
+    
 </body>
 
 <html>
+
+
+    
+    

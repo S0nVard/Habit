@@ -2,10 +2,9 @@
 {% block header%}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 
-<h2>**Long-term Goal Displayed**</h2>
-
-<h1 contenteditable="true">Habit1</h1>
-<progress  id="file" max="100" value="70" height='100px'> 70% </progress>
+<h1>Your main goal:{{ goal }}</h1>
+<h1 class="tooltip" contenteditable="true">Habit1</h1> 
+<progress id="file" max="100" value="30" height='50px'> 70% </progress>
 <h1 contenteditable="true">Habit2</h1>
 <progress id="file" max="100" value="30" height='50px'> 70% </progress>
 
@@ -33,3 +32,30 @@ progress::-webkit-progress-value {
 progress::-moz-progress-bar {
     /* style rules */
 }
+
+<style>
+    .tooltip {
+      position: relative;
+      
+      
+    }
+    
+    .tooltip .tooltiptext {
+      font-size: 17px;
+      visibility: hidden;
+      width: 120px;
+      background-color: #D5BAEA;
+      color: black;
+      text-align: center;
+      border-radius: 4px;
+      padding: 1px 0;
+    
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+    }
+    
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+    }
+</style>
