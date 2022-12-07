@@ -17,6 +17,15 @@
             text-align: center;
         }
     </style>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class='flashes'>
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor %}
+        </ul>
+    {% endif%}
+    {% endwith %}
     <div style="text-align: center;">
         <form class="form-signin" action="http://localhost:5000/register" method="post">
         <div style="display: inline-block; text-align: left;">
