@@ -40,24 +40,37 @@
 
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-{% for i in range(1, 4) %}
-<button type="button" class="collapsible" contenteditable="true">Habit {{ i }}</button>
+{%for action in db_week_action%}
+<section>
+    <div>
+        {% if action.completed == true %}
+        <p id = '{{ action.id }}' src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69"><s>{{action.name}}</s></p>
+        <button class="btn-outline-danger"><a class="todo" href="{{ url_for("change_status", action_id=action.id) }}">Undo</a></button>
+        {% else %}
+        <p id = '{{ action.id }}' src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">{{action.name}}</p>
+        <button class="btn-outline-danger"><a class="todo" href="{{ url_for("change_status", action_id=action.id) }}">Done</a></button>
+        {% endif %}
+        
+    </div>
+</section>
+{%endfor%}
+
+{% for habit in habits %}
+<button type="button" class="collapsible" contenteditable="true">{{ habit.name }}</button>
 <div class="content">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <form action="{{ url_for('add_action')}}", method="post" >
-        <br><div class="tooltip">Add an Action
-        </div></br>
-        <input type="text" name="action" placeholder = "E.g. do a leg workout."/></br>
-        <input type="hidden" id="habit_index" name="habit_index" value={{ i }}>
+    <form action="{{ url_for('add_action', habit_id = habit.id)}}", method="post" >
+        <input type="text" name="name" placeholder = "New Action"/></br>
         <button class="button-37" type="submit">Add</button>
     </form></br>
+
     {% for j in range (1, 4) %}
-    <button type="button" class="collapsible" contenteditable="true">Week {{ j }}</button>
+    <button type="button" class="collapsible">Week {{ j }}</button>
         <div class="content">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
         <body>
         <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 150px; float:left; height:150px; background:#EAD4FB; margin:3px">
-        M</div> 
+        M</div>     
         <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 150px; float:left; height:150px; background:#EAD4FB; margin:3px">
         Tu</div>
         <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 150px; float:left; height:150px; background:#EAD4FB; margin:3px">
@@ -74,6 +87,8 @@
     {%endfor%}
 </div>
 {%endfor%}
+
+
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;
@@ -107,7 +122,5 @@ function drop(ev) {
 }
 </script>
 
-<p id = '1' src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">Action N</p>  
-
-
 {% endblock %}
+

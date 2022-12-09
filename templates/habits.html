@@ -3,13 +3,16 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 
 <h1>Your main goal:{{ goal }}</h1>
-<h1 class="tooltip" contenteditable="true">Habit1</h1> 
-<progress id="file" max="100" value="30" height='50px'> 70% </progress>
-<h1 contenteditable="true">Habit2</h1>
-<progress id="file" max="100" value="30" height='50px'> 70% </progress>
+<form action="{{ url_for('add_habit')}}", method="post" >
+  <input type="text" name="habit" placeholder = "New Habit"/></br>
+  <button class="button-37" type="submit">Add</button>
+</form></br>
 
-<h1 contenteditable="true">Habit3</h1>
-<progress id="file" max="100" value="90" height='50px'> 70% </progress>
+{%for habit in habits%}
+  <h1 class="tooltip">{{ habit.name }}</h1> 
+  <progress id="file" max="100" value="{{ habit.completion }}" height='50px'> {{ habit.completion }} </progress>
+{%endfor%}
+
 
 {% endblock %}
 
