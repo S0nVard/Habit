@@ -91,9 +91,9 @@ class Tree(FlaskForm):
     habit = StringField('habit', validators=[InputRequired(), Length(min=1, max=1000)])
     action = StringField('action', validators=[InputRequired(), Length(min=1, max=10000)])
 
-with app.app_context():
-    db.create_all()
-    db.session.commit()
+# with app.app_context():
+#     db.create_all()
+#     db.session.commit()
 
 # Create a decorator (helper function for @app.route) that requires the user to log in at specified pages
 def login_required(f):
