@@ -15,8 +15,8 @@ from functools import wraps
 app = Flask(__name__)
 Bootstrap(app)
 #connecting to database 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ibbhpekoaxumyx:5e5182320b83f88b8f31191e5187249665a24ec4664e8f065e67d04cd5c729b9@ec2-52-3-60-53.compute-1.amazonaws.com:5432/ddea8bsh4bff1e'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ibbhpekoaxumyx:5e5182320b83f88b8f31191e5187249665a24ec4664e8f065e67d04cd5c729b9@ec2-52-3-60-53.compute-1.amazonaws.com:5432/ddea8bsh4bff1e'
 
 #app.config['SQLAlchemy_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'BAD_SECRET_KEY'
