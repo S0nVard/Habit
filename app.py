@@ -16,7 +16,9 @@ from sqlalchemy import ForeignKey
 app = Flask(__name__)
 Bootstrap(app)
 #connecting to database 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI']='postgres://sixcwnvavdoqyn:df3ef1a0a2fcfcd7d775f2fcd8fcc5d1f8ddccfbef84751ea7d2817236fa792d@ec2-54-158-247-210.compute-1.amazonaws.com:5432/d139evep06u0i5'
+
 #app.config['SQLAlchemy_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'BAD_SECRET_KEY'
 
