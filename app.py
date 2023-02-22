@@ -11,7 +11,6 @@ from wtforms.validators import InputRequired, Length #, Email
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
-from sqlalchemy import ForeignKey
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -43,7 +42,7 @@ class User(db.Model, UserMixin):
 # add a column for username to retrieve the goals for the current user
 class Big_goal(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True )
-    user_id = db.Column(db.Integer, ForeignKey(User.id))
+    user_id = db.Column(db.Integer)
     goal = db.Column(db.String(1000), nullable = False)
     date_added = db.Column(db.DateTime, default=datetime.now())
 
@@ -52,17 +51,15 @@ class Big_goal(db.Model):
     
 class Habit(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True )
-    big_goal_id = db.Column(db.Integer, ForeignKey(Big_goal.id))
+    big_goal_id = db.Column(db.Integer)
     name = db.Column(db.String(200), nullable = False)
-    completion = db.Column(db.Integer, default=0)
     
 class Action(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    habit_id = db.Column(db.Integer, ForeignKey(Habit.id))
+    habit_id = db.Column(db.Integer)
     week = db.Column(db.Integer)
     day = db.Column(db.Integer)
     name = db.Column(db.String(1000), nullable=False)
-    completed = db.Column(db.Boolean, unique=False, default=False)
 
     def __repr__(self):
         return '<Action %r>' % self.id
@@ -118,7 +115,6 @@ def homepage():
         
         db.session.add(new_goal)
         db.session.commit()
-        session['goal'] = Big_goal.query.order_by(Big_goal.date_added.desc()).first()
         print(f'submitted long-term goal: {goal}')
         return redirect(url_for('habits'))
     
@@ -148,7 +144,6 @@ def login():
             session['id'] = user.id 
             session["username"] = user.username
             session["email"] = user.email
-            session['goal'] = Big_goal.query.order_by(Big_goal.date_added.desc()).first()
             print("FROM SESSION:", session['username'])
             return redirect(url_for("habits"))
         
@@ -172,11 +167,11 @@ def register():
         if user is None:
             #print(form.username.data, form.email.data, form.password.data)
             new_user = User(username=form.username.data, email=form.email.data, password=generate_password_hash(form.password.data, method='sha256'))
-            #print('CREATED user', new_user.username)
+            print('CREATED user', new_user.username)
             
             db.session.add(new_user)
             db.session.commit()
-            #print('ADDED user') 
+            print('ADDED user') 
         name = form.username.data
         form.username.data = ' '
         form.email.data = ' '
@@ -189,72 +184,25 @@ def register():
 @login_required
 def habits():
     
-    #goal = Big_goal.query.order_by(Big_goal.date_added.desc()).first()
-    goal = session['goal']
-    habits = Habit.query.filter_by(big_goal_id=goal.id).all()
-    for habit in habits:
-        actions = Action.query.filter_by(habit_id=habit.id).all()
-        if len(actions) > 0:
-            fraction = int(sum([1 if a.completed else 0 for a in actions])/len(actions)*100)
-            habit.completion = fraction
-            db.session.commit()
-        print(habit.name, habit.completion)
-        
+    goal = Big_goal.query.order_by(Big_goal.date_added.desc()).first()
     print(f"retrieved your goal {goal.goal} - {goal.date_added}")
-    return render_template("habits.html", goal=goal.goal, habits=habits)
+    return render_template("habits.html", goal=goal.goal)
 
 @app.route('/tree', methods = ['POST', 'GET'])
 @login_required
 def tree():
     db_week_action = Action.query.order_by(Action.id).all()
-    print(db_week_action)
-    #goal = Big_goal.query.order_by(Big_goal.date_added.desc()).first()
-    goal = session['goal']
-    habits = Habit.query.filter_by(big_goal_id=goal.id).all()
+    goal = Big_goal.query.order_by(Big_goal.date_added.desc()).first()
     print(f"retrieved your goal {goal}")
 
-    return render_template("tree.html", goal=goal.goal, db_week_action=db_week_action, habits=habits)
+    return render_template("tree.html", goal=goal.goal, db_week_action=db_week_action)
 
-@app.route('/add_action/<habit_id>', methods=['POST', 'GET'])
+@app.route('/add_action', methods=['POST'])
 @login_required
-def add_action(habit_id):
-    if request.method == "POST":
-        action_name = request.form.get('name')
-        
-        new_action = Action(name = action_name,
-                            habit_id = habit_id,
-                            week=1,
-                            day=1,
-                            completed=False)
+def add_action():
+    habit_index = request.form.get('habit_index')
+    action_name = request.form.get('action')
 
-        db.session.add(new_action)
-        db.session.commit()
-        return redirect(url_for("tree"))
-    else:
-        return redirect(url_for("tree"))
-
-
-@app.route('/add_habit', methods=['POST', 'GET'])
-@login_required
-def add_habit():
-    if request.method == "POST":
-
-        habit_name = request.form.get('habit')
-        new_habit = Habit(name = habit_name, big_goal_id=session["goal"].id)
-
-        db.session.add(new_habit)
-        db.session.commit()
-        return redirect(url_for("habits"))
-    else:
-        return redirect(url_for("habits"))
-
-@app.route('/change_status/<action_id>', methods=['POST', 'GET'])
-@login_required
-def change_status(action_id):
-    action = Action.query.filter_by(id=action_id).first()
-    action.completed = not action.completed
-    db.session.commit()
-    
     return redirect(url_for("tree"))
 
 
