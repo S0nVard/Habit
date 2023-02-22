@@ -1,4 +1,3 @@
-from ast import For
 from flask import Flask, redirect, render_template, request, session, url_for, redirect, flash
 from flask_session import Session
 from flask_bootstrap import Bootstrap
