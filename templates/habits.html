@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block header%}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+<h1>Your main goal:{{ goal }}</h1>
+<form action="{{ url_for('add_habit')}}", method="post" >
+  <input type="text" name="habit" placeholder = "New Habit"/></br>
+  <button class="button-37" type="submit">Add</button>
+</form></br>
+
+{%for habit in habits%}
+  <h1 class="tooltip">{{ habit.name }}</h1> 
+  <progress id="file" max="100" value="{{ habit.completion }}" height='50px'> {{ habit.completion }} </progress>
+{%endfor%}
+
+
+{% endblock %}
+
+progress {
+    border-radius: 7px; 
+    width: 80%;
+    height: 22px;
+    margin-left: -11.5%;
+    box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );
+}
+progress::-webkit-progress-bar {
+    background-color: yellow;
+    border-radius: 7px;
+}
+progress::-webkit-progress-value {
+    background-color: blue;
+    border-radius: 7px;
+    box-shadow: 1px 1px 5px 3px rgba( 255, 0, 0, 0.8 );
+}
+progress::-moz-progress-bar {
+    /* style rules */
+}
+
+<style>
+    .tooltip {
+      position: relative;
+      
+      
+    }
+    
+    .tooltip .tooltiptext {
+      font-size: 17px;
+      visibility: hidden;
+      width: 120px;
+      background-color: #D5BAEA;
+      color: black;
+      text-align: center;
+      border-radius: 4px;
+      padding: 1px 0;
+    
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+    }
+    
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+    }
+</style>

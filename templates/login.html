@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{%import "bootstrap/wtf.html" as wtf %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,18 +16,26 @@
             text-align: center;
         }
     </style>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class='flashes'>
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor %}
+        </ul>
+    {% endif%}
+    {% endwith %}
     <div style="text-align: center;">
-        <form>
+        <form action="http://localhost:5000/" method="post">
         <div style="display: inline-block; text-align: left;">
             <h1>Login Page</h1> <br />
-
-           <input type='text' name ='nm', placeholder="Username"/></p>
-            <br />
-            <input type="password" name = 'pw', placeholder="Password"/></p>
-            <br />
-
-        <p><input type="submit" value="Login"></p>
-                        Don't have an account yet? 
+            {{ form.hidden_tag() }}
+            {{ wtf.form_field(form.username) }}
+            {{ wtf.form_field(form.password) }}
+            {{ wtf.form_field(form.remember) }}
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+            Don't have an account yet? 
         <p>             Click <a href="http://localhost:5000/register", style = "...">here</a> to register.</p>
 
         </form>
