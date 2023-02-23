@@ -2,12 +2,13 @@
 {%import "bootstrap/wtf.html" as wtf %}
 <html lang="en">
 <head>
+ 
     <meta charset="UTF-8">
     <style>
         
         h1 {
-            color: green;
-            text-align: left;
+            color: purple;
+            text-align: center;
         }
         
         p {
@@ -35,6 +36,7 @@
             {{ wtf.form_field(form.password) }}
             {{ wtf.form_field(form.remember) }}
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+            <div>
             Don't have an account yet? 
         <p>             Click <a href="http://localhost:5000/register", style = "...">here</a> to register.</p>
 
