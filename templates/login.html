@@ -23,7 +23,7 @@
 
 body {
     font-family: verdana;
-    font-size: 15px; 
+    font-size: 20px; 
   }
 
 .topnav {
@@ -92,6 +92,7 @@ footer {
     }
   }
 
+
 </style>
 
 <div class="topnav">
@@ -114,16 +115,23 @@ footer {
     {% endwith %}
     <div style="text-align: center;">
         <form action="http://localhost:5000/" method="post">
-        <div style="display: inline-block; text-align: left;">
+        <div style="display: inline-block; text-align: right;" >
             <h1>Login Page</h1> <br />
+            <body>
             {{ form.hidden_tag() }}
             {{ wtf.form_field(form.username) }}
+            <br>
             {{ wtf.form_field(form.password) }}
-            {{ wtf.form_field(form.remember) }}
-            <button class="button-37" type="submit">Sign In</button>
+            <br>
+            <body1 align = "left">{{ wtf.form_field(form.remember) }}</body1>
+            </body>
+            <div align = "center">
+                <br>
+            <button class="button-37" type="submit" align = "center">Sign In</button>
+            <br>
             <div>
             Don't have an account yet? 
-        <p>             Click <a href="http://localhost:5000/register", style = "...">here</a> to register.</p>
+        <div align = "center"> Click <a href="http://localhost:5000/register", style = "...">here</a> to register.</div>
 
         </form>
 

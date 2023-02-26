@@ -67,6 +67,7 @@ class Action(db.Model):
 
     def __repr__(self):
         return '<Action %r>' % self.id
+    
         
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -95,6 +96,7 @@ class Tree(FlaskForm):
     habit = StringField('habit', validators=[InputRequired(), Length(min=1, max=1000)])
     action = StringField('action', validators=[InputRequired(), Length(min=1, max=10000)])
 
+    
 with app.app_context():
     db.create_all()
     db.session.commit()
@@ -193,7 +195,7 @@ def habits():
     #goal = Big_goal.query.order_by(Big_goal.date_added.desc()).first()
     goal = session['goal']
     habits = Habit.query.filter_by(big_goal_id=goal.id).all()
-    for habit in habits:
+    for habit in habits: 
         actions = Action.query.filter_by(habit_id=habit.id).all()
         if len(actions) > 0:
             fraction = int(sum([1 if a.completed else 0 for a in actions])/len(actions)*100)
@@ -265,6 +267,20 @@ def badges():
     goal = Big_goal.query.order_by(Big_goal.date_added.desc()).first()
     print(f"retrieved your goal {goal}")
     return render_template("badges.html", goal=goal.goal)
+
+@app.route('/add_badges/<habit_id>', methods=['POST', 'GET'])
+@login_required
+def add_badges(habit_id):
+    goal = session['goal']
+    habits = Habit.query.filter_by(id=habit.id).all()
+    for habit in habits: 
+        if habit.completion == 1:
+            habit_complete = Habit.query.order_by(Habit.id).all()
+            print(habit_complete)
+            print(f"retrieved your goal {goal}")
+
+        return render_template("badge.html", goal=goal.goal, habit_complete=habit_complete, habits=habits)
+                
 
 if __name__=="__main__":
     app.run(debug=True)

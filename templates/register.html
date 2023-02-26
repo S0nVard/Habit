@@ -23,7 +23,7 @@
     
     body {
         font-family: verdana;
-        font-size: 15px; 
+        font-size: 25px; 
       }
     
     .topnav {
@@ -113,19 +113,23 @@
     {% endwith %}
     <div style="text-align: center;">
         <form class="form-signin" action="http://localhost:5000/register" method="post">
-        <div style="display: inline-block; text-align: left;">
-            <h1>Register</h1> <br />
+        <div style="display: inline-block; text-align: right;">
+            <h1 align = "center">Register</h1> <br />
+        <body>
             {{ form.hidden_tag() }}
+            <br>
             {{ wtf.form_field(form.username) }}
+            <br>
             {{ wtf.form_field(form.email) }}
-            {{ wtf.form_field(form.password) }}<label>🔑</label>
-        </br>
-        <button class="button-37" type="submit" href="http://localhost:5000/signup">Sign Up</a></button>
-        </br>
-        Already have an account? <p><a href="http://localhost:5000/", style = "...">Log In</a></p>
-        
-        </form>
+            <br>
+            <label>🔑</label>{{ wtf.form_field(form.password) }}
         </div>
+        <br>
+            <button class="button-37" type="submit" href="http://localhost:5000/signup" align = "center">Sign Up</a></button>
+        <br>
+        Already have an account?<div><a href="http://localhost:5000/", style = "...">Log In</a></div>
+    </body>
+        </form>
     </div>
 </head>
 
