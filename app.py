@@ -12,11 +12,13 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from sqlalchemy import ForeignKey
+import os 
 
 app = Flask(__name__)
 Bootstrap(app)
 #connecting to database 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ohmydftzwauuzh:3d1597ec6c466890965bb4328785b687d4c8ca54b54b378a20cf640f5fead099@ec2-34-226-11-94.compute-1.amazonaws.com:5432/db36ekb7prhk3s' 
 #app.config['SQLAlchemy_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'BAD_SECRET_KEY'
 
