@@ -35,8 +35,40 @@
     max-height: 0;
     overflow: hidden;
     padding: 0 18px;
-
 }
+
+.button-37 {
+    background-color: #9747FF;
+    border: 1px solid #9747FF;
+    border-radius: 100px;
+    box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    padding: 10px 25px;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-37:hover {
+    box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+    transform: translateY(-2px);
+  }
+  
+  @media (min-width: 768px) {
+    .button-37 {
+      padding: 10px 30px;
+    }
+  }
 
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
@@ -44,11 +76,11 @@
 <section>
     <div>
         {% if action.completed == true %}
-        <p id = '{{ action.id }}' src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69"><s>{{action.name}}</s></p>
-        <button class="btn-outline-danger"><a class="todo" href="{{ url_for("change_status", action_id=action.id) }}">Undo</a></button>
+        <p id = '{{ action.id }}' src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69"><s>{{action.name}}<button class="btn-outline-danger"><a class="todo" href="{{ url_for("change_status", action_id=action.id) }}">Undo</a></button>
+        </s></p>
         {% else %}
-        <p id = '{{ action.id }}' src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">{{action.name}}</p>
-        <button class="btn-outline-danger"><a class="todo" href="{{ url_for("change_status", action_id=action.id) }}">Done</a></button>
+        <p id = '{{ action.id }}' src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">{{action.name}}<button class="btn-outline-danger"><a class="todo" href="{{ url_for("change_status", action_id=action.id) }}">Done</a></button></p>
+        
         {% endif %}
         
     </div>
@@ -61,6 +93,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <form action="{{ url_for('add_action', habit_id = habit.id)}}", method="post" >
         <input type="text" name="name" placeholder = "New Action"/></br>
+        <br>
         <button class="button-37" type="submit">Add</button>
     </form></br>
 
@@ -87,6 +120,22 @@
     {%endfor%}
 </div>
 {%endfor%}
+<div>
+
+    
+<button type="button-37" class="collapsible"> Lear More </button>
+    <div class="content">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <body>
+        <div id="div1" style="width: 600px; float:left; height:800px; background:#EAD4FB; margin:3px">
+            This is the Tree! The base of your journey! It is the broken-down to different levels that would eventually lead to closer to the main long-term goal of yours.
+            <ul style="line-height:180%">
+                <li>Start by picking a habit that you want to work on for the next 3 weeks.</li>
+                <li>Come up wih actions for each week and place them in the corresponding weekday using drag and drop.</li>
+                <li>Mark them completed when you are done with the action.</li>
+              </ul>
+        </div>
+
 
 
 <script>

@@ -2,21 +2,106 @@
 {%import "bootstrap/wtf.html" as wtf %}
 
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
-        
-        h1 {
-            color: green;
-            text-align: left;
+
+    .h1 {
+        color:#A020F0;
+        text-align: center;
+        text-font: Inter;
+    }
+    
+    .head1 {
+        font-size:40px;
+        color:#ffffff;
+        font-weight:bold;
+        background-color: #B96FF2;
+        text-align: left;
+        text-font: Inter;
+    }
+    
+    body {
+        font-family: verdana;
+        font-size: 25px; 
+      }
+    
+    .topnav {
+      overflow: hidden;
+      background-color: #B96FF2;
+    }
+    
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    .topnav a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+    
+    footer {
+        width: 100%;
+        bottom: 0px;
+        background-color: #B96FF2;
+        color: #fff;
+        position: absolute;
+        text-align:right;
+        font-size:10px;
+    }
+    .button-37 {
+        background-color: #9747FF;
+        border: 1px solid #9747FF;
+        border-radius: 100px;
+        box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+        box-sizing: border-box;
+        color: white;
+        cursor: pointer;
+        font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        outline: none;
+        outline: 0;
+        padding: 10px 25px;
+        text-align: center;
+        transform: translateY(0);
+        transition: transform 150ms, box-shadow 150ms;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+      
+      .button-37:hover {
+        box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+        transform: translateY(-2px);
+      }
+      
+      @media (min-width: 768px) {
+        .button-37 {
+          padding: 10px 30px;
         }
-        
-        p {
-            font-family: verdana;
-            font-size: 15px; 
-            text-align: center;
-        }
+      }
+    
     </style>
+    
+    <div class="topnav">
+        <header>
+          <div class="head1">HubIt</div></header>
+    
+        <div>
+      </div>
+    </div>
+      </head>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
         <ul class='flashes'>
@@ -28,17 +113,23 @@
     {% endwith %}
     <div style="text-align: center;">
         <form class="form-signin" action="http://localhost:5000/register" method="post">
-        <div style="display: inline-block; text-align: left;">
-            <h1>Register</h1> <br />
+        <div style="display: inline-block; text-align: right;">
+            <h1 align = "center">Register</h1> <br />
+        <body>
             {{ form.hidden_tag() }}
+            <br>
             {{ wtf.form_field(form.username) }}
+            <br>
             {{ wtf.form_field(form.email) }}
-            {{ wtf.form_field(form.password) }}<label>🔑</label>
-        </br>
-            <button class="btn btn-lg btn-primary btn-block" type="submit" href="http://localhost:5000/signup">Sign Up</a></button>
-        Already have an account? <p><a href="http://localhost:5000/", style = "...">Log In</a></p>
-        </form>
+            <br>
+            <label>🔑</label>{{ wtf.form_field(form.password) }}
         </div>
+        <br>
+            <button class="button-37" type="submit" href="http://localhost:5000/signup" align = "center">Sign Up</a></button>
+        <br>
+        Already have an account?<div><a href="http://localhost:5000/", style = "...">Log In</a></div>
+    </body>
+        </form>
     </div>
 </head>
 
