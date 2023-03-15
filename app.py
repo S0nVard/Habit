@@ -22,7 +22,7 @@ Bootstrap(app)
 import os
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://ohmydftzwauuzh:3d1597ec6c466890965bb4328785b687d4c8ca54b54b378a20cf640f5fead099@ec2-34-226-11-94.compute-1.amazonaws.com:5432/db36ekb7prhk3s"  # or other relevant config var
-print(os.getenv("DATABASE_URL"))
+#print(os.getenv("DATABASE_URL"))
 if app.config['SQLALCHEMY_DATABASE_URI'].startswith("postgres://"):
     app.config['SQLALCHEMY_DATABASE_URI'] = app.config['SQLALCHEMY_DATABASE_URI'].replace("postgres://", "postgresql://", 1)
     print(app.config.get('SQLALCHEMY_DATABASE_URI'))
