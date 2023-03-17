@@ -25,7 +25,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://ohmydftzwauuzh:3d1597ec6c466
 #print(os.getenv("DATABASE_URL"))
 if app.config['SQLALCHEMY_DATABASE_URI'].startswith("postgres://"):
     app.config['SQLALCHEMY_DATABASE_URI'] = app.config['SQLALCHEMY_DATABASE_URI'].replace("postgres://", "postgresql://", 1)
-    print(app.config.get('SQLALCHEMY_DATABASE_URI'))
+    #print(app.config.get('SQLALCHEMY_DATABASE_URI'))
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://ohmydftzwauuzh:3d1597ec6c466890965bb4328785b687d4c8ca54b54b378a20cf640f5fead099@ec2-34-226-11-94.compute-1.amazonaws.com:5432/db36ekb7prhk3s"
 #app.config['SQLAlchemy_TRACK_MODIFICATIONS'] = False
@@ -46,9 +46,23 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     username = db.Column(db.String(50), unique=True, nullable = False)
     email = db.Column(db.String(50), unique=True, nullable = False)
-    password = db.Column(db.String(80), nullable = False)
-    #date_added = db.Column(db.DateTime, default=datetime.now())
+    password = db.Column(db.String(256), nullable = False)
+#    password_hash = db.Column(db.String(266))
     
+    #date_added = db.Column(db.DateTime, default=datetime.now())
+
+    
+#    @property
+#    def password(self):
+#        raise AttributeError('password is not readible')
+
+#    @password.setter
+#    def password(self, password):
+#        self.password_hash = generate_password_hash(password)
+         
+#    def verify_password(self,password):
+#        return check_password_hash
+       
     def __repr__(self):
         return "<Name %r>" % self.username
 
@@ -56,7 +70,7 @@ class User(db.Model, UserMixin):
 class Big_goal(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True )
     user_id = db.Column(db.Integer, ForeignKey(User.id))
-    goal = db.Column(db.String(1000), nullable = False)
+    goal = db.Column(db.String(80), nullable = False)
     date_added = db.Column(db.DateTime, default=datetime.now())
 
     def __repr__(self):
@@ -65,7 +79,7 @@ class Big_goal(db.Model):
 class Habit(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True )
     big_goal_id = db.Column(db.Integer, ForeignKey(Big_goal.id))
-    name = db.Column(db.String(200), nullable = False)
+    name = db.Column(db.String(80), nullable = False)
     completion = db.Column(db.Integer, default=0)
     
 class Action(db.Model):
@@ -73,7 +87,7 @@ class Action(db.Model):
     habit_id = db.Column(db.Integer, ForeignKey(Habit.id))
     week = db.Column(db.Integer)
     day = db.Column(db.Integer)
-    name = db.Column(db.String(1000), nullable=False)
+    name = db.Column(db.String(80), nullable=False)
     completed = db.Column(db.Boolean, unique=False, default=False)
 
     def __repr__(self):
@@ -101,11 +115,11 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[InputRequired(), Length(min=4, max=80)])       
     
 class Goal(FlaskForm):
-    Goal = StringField('goal', validators=[InputRequired(), Length(min=1, max=1000)])            
+    Goal = StringField('goal', validators=[InputRequired(), Length(min=1, max=80)])            
 
 class Tree(FlaskForm):
-    habit = StringField('habit', validators=[InputRequired(), Length(min=1, max=1000)])
-    action = StringField('action', validators=[InputRequired(), Length(min=1, max=10000)])
+    habit = StringField('habit', validators=[InputRequired(), Length(min=1, max=80)])
+    action = StringField('action', validators=[InputRequired(), Length(min=1, max=80)])
 
     
 with app.app_context():
@@ -179,24 +193,24 @@ def logout():
 def register():
     name = None
     form = RegistrationForm() 
-    #print('Created FORM')
+    print('Created FORM')
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        #print('Queried USER') 
+        print('Queried USER') 
         if user is None:
-            #print(form.username.data, form.email.data, form.password.data)
-            new_user = User(username=form.username.data, email=form.email.data, password=generate_password_hash(form.password.data, method='sha256'))
-            #print('CREATED user', new_user.username)
+            print(form.username.data, form.email.data, form.password.data)
+            new_user = User(username=form.username.data, email=form.email.data, password=generate_password_hash(form.password.data, method='sha1'))
+            print('CREATED user', new_user.username)
             
             db.session.add(new_user)
             db.session.commit()
-            #print('ADDED user') 
+            print('ADDED user') 
         name = form.username.data
         form.username.data = ' '
         form.email.data = ' '
         flash('User added successfully!')
-        #print(name, user)    
-        return render_template("homepage.html") 
+        print(name, user)    
+        return redirect(url_for("homepage")) 
     return render_template("register.html", form=form)
 
 @app.route('/habits')

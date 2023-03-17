@@ -112,7 +112,7 @@
     {% endif%}
     {% endwith %}
     <div style="text-align: center;">
-        <form class="form-signin" action="http://localhost:5000/register" method="post">
+        <form class="form-signin" action= {{ url_for('register') }} method="post">
         <div style="display: inline-block; text-align: right;">
             <h1 align = "center">Register</h1> <br />
         <body>
@@ -125,9 +125,9 @@
             <label>🔑</label>{{ wtf.form_field(form.password) }}
         </div>
         <br>
-            <button class="button-37" type="submit" href="http://localhost:5000/signup" align = "center">Sign Up</a></button>
+            <button class="button-37" type="submit" href={{ url_for('homepage') }} align = "center">Sign Up</a></button>
         <br>
-        Already have an account?<div><a href="http://localhost:5000/", style = "...">Log In</a></div>
+        Already have an account?<div><a href={{ url_for('login') }} style = "...">Log In</a></div>
     </body>
         </form>
     </div>
