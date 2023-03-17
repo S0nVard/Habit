@@ -112,7 +112,7 @@
     {% endif%}
     {% endwith %}
     <div style="text-align: center;">
-        <form class="form-signin" action = "http://localhost:5000/register", method="post">
+        <form class="form-signin" action = {{ url_for('register') }} method="post">
         <div style="display: inline-block; text-align: right;">
             <h1 align = "center">Register</h1> <br />
         <body>
