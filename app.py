@@ -17,7 +17,6 @@ from alembic import context
 app = Flask(__name__)
 
 with app.app_context():
-     current_app = app
      print (current_app.name)
 
 Bootstrap(app)
