@@ -16,9 +16,6 @@ from alembic import context
 
 app = Flask(__name__)
 
-with app.app_context():
-     print (current_app.name)
-
 Bootstrap(app)
 #connecting to database 
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -103,6 +100,8 @@ login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id):
+    with app.app_context():
+        print(current_app.name)
     return User.query.get(int(user_id))
 
 class LoginForm(FlaskForm):
@@ -128,11 +127,15 @@ class Tree(FlaskForm):
 with app.app_context():
     db.create_all()
     db.session.commit()
+    print(current_app.name)
+    print("db created in context")
 
 # Create a decorator (helper function for @app.route) that requires the user to log in at specified pages
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
+        with app.app_context():
+            print(current_app.name)
         if session.get("email") is None:
             return redirect(url_for('login'))
         return f(*args, **kwargs)
@@ -140,6 +143,8 @@ def login_required(f):
 
 @app.route('/homepage', methods=['GET','POST'])
 def homepage():
+    with app.app_context():
+        print(current_app.name)
     form=Goal()
     if request.method == "POST":
         #if form.validate_on_submit():
@@ -157,6 +162,9 @@ def homepage():
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
+    
+    with app.app_context():
+        print(current_app.name)
     #session.clear()
     
     if current_user.is_authenticated: return(url_for('habits'))
@@ -189,11 +197,15 @@ def login():
 @app.route("/logout")
 @login_required
 def logout():
+    with app.app_context():
+        print(current_app.name)
     session.clear()
     return redirect(url_for("login"))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    with app.app_context():
+        print(current_app.name)
     name = None
     form = RegistrationForm() 
     print('Created FORM')
@@ -219,7 +231,8 @@ def register():
 @app.route('/habits')
 @login_required
 def habits():
-    
+    with app.app_context():
+        print(current_app.name)
     #goal = Big_goal.query.order_by(Big_goal.date_added.desc()).first()
     goal = session['goal']
     habits = Habit.query.filter_by(big_goal_id=goal.id).all()
@@ -237,6 +250,8 @@ def habits():
 @app.route('/tree', methods = ['POST', 'GET'])
 @login_required
 def tree():
+    with app.app_context():
+        print(current_app.name)
     db_week_action = Action.query.order_by(Action.id).all()
     print(db_week_action)
     #goal = Big_goal.query.order_by(Big_goal.date_added.desc()).first()
@@ -249,6 +264,8 @@ def tree():
 @app.route('/add_action/<habit_id>', methods=['POST', 'GET'])
 @login_required
 def add_action(habit_id):
+    with app.app_context():
+        print(current_app.name)
     if request.method == "POST":
         action_name = request.form.get('name')
         
@@ -268,6 +285,8 @@ def add_action(habit_id):
 @app.route('/add_habit', methods=['POST', 'GET'])
 @login_required
 def add_habit():
+    with app.app_context():
+        print(current_app.name)
     if request.method == "POST":
 
         habit_name = request.form.get('habit')
@@ -292,6 +311,8 @@ def change_status(action_id):
 @app.route('/badges')
 @login_required
 def badges():
+    with app.app_context():
+        print(current_app.name)
     goal = Big_goal.query.order_by(Big_goal.date_added.desc()).first()
     print(f"retrieved your goal {goal}")
     return render_template("badges.html", goal=goal.goal)
@@ -299,6 +320,8 @@ def badges():
 @app.route('/add_badges/<habit_id>', methods=['POST', 'GET'])
 @login_required
 def add_badges(habit_id):
+    with app.app_context():
+        print(current_app.name)
     goal = session['goal']
     habits = Habit.query.filter_by(id=habit.id).all()
     for habit in habits: 
