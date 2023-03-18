@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, session, url_for, redirect, flash
+from flask import Flask, redirect, render_template, request, session, url_for, redirect, flash, current_app
 from flask_session import Session
 from flask_bootstrap import Bootstrap
 from flask_migrate import Migrate
@@ -12,14 +12,18 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from sqlalchemy import ForeignKey
-import os 
+from alembic import context
 
 app = Flask(__name__)
+
+with app.app_context():
+     current_app = app
+     print (current_app.name)
+
 Bootstrap(app)
 #connecting to database 
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 #"postgresql://ohmydftzwauuzh:3d1597ec6c466890965bb4328785b687d4c8ca54b54b378a20cf640f5fead099@ec2-34-226-11-94.compute-1.amazonaws.com:5432/db36ekb7prhk3s"
-import os
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://ohmydftzwauuzh:3d1597ec6c466890965bb4328785b687d4c8ca54b54b378a20cf640f5fead099@ec2-34-226-11-94.compute-1.amazonaws.com:5432/db36ekb7prhk3s"  # or other relevant config var
 #print(os.getenv("DATABASE_URL"))
