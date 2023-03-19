@@ -301,6 +301,8 @@ def add_habit():
 @app.route('/change_status/<action_id>', methods=['POST', 'GET'])
 @login_required
 def change_status(action_id):
+    with app.app_context():
+        print(current_app.name)
     action = Action.query.filter_by(id=action_id).first()
     action.completed = not action.completed
     db.session.commit()
@@ -331,7 +333,9 @@ def add_badges(habit_id):
             print(f"retrieved your goal {goal}")
 
         return render_template("badge.html", goal=goal.goal, habit_complete=habit_complete, habits=habits)
-                
+
+with app.app_context():
+        print(current_app.name)
 
 if __name__=="__main__":
     app.run(debug=True)
