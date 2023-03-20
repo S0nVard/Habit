@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-{%import "bootstrap/wtf.html" as wtf %}
 <html lang="en">
+{%import "bootstrap/wtf.html" as wtf %}
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 
-.h1 {
+h1 {
     color:#B96FF2;
     text-align: center;
-    text-font: Inter;
+    text-font: Serif;
+    font-size: 20px;
 }
 
 .head1 {
@@ -24,6 +26,12 @@
 body {
     font-family: verdana;
     font-size: 20px; 
+    background-color: #E6E6FA	;
+  }
+
+body1 {
+    font-family: verdana;
+    font-size: 14px; 
   }
 
 .topnav {
@@ -92,6 +100,15 @@ footer {
     }
   }
 
+div.outset {
+border-style: outset;
+background-color: white;
+
+}
+
+div1 {
+  font-size:18px;
+  }
 
 </style>
 
@@ -115,24 +132,28 @@ footer {
     {% endwith %}
     <div style="text-align: center;">
         <form action="https://habittpb.herokuapp.com/" method="post">
-        <div style="display: inline-block; text-align: right;" >
-            <h1>Login Page</h1> <br />
+        <br>
+        <br>
+        <div class = "outset" style="display: inline-block; text-align: center; width:400px; height:400px" >
+            <h1 >Welcome to HubIt</h1> <br />
             <body>
             {{ form.hidden_tag() }}
             {{ wtf.form_field(form.username) }}
             <br>
             {{ wtf.form_field(form.password) }}
             <br>
-            <body1 align = "left">{{ wtf.form_field(form.remember) }}</body1>
+            <body1>{{ wtf.form_field(form.remember) }}</body1>
             </body>
             <div align = "center">
                 <br>
             <button class="button-37" type="submit" align = "center">Sign In</button>
             <br>
-            <div>
+            <br>
+            <br>
+            <div1>
             Don't have an account yet? 
-        <div align = "center"> Click <a href={{ url_for('register') }} style = "...">here</a> to register.</div>
-
+        <div align = "center" > Click <a href={{ url_for('register') }} style = "...">here</a> to register.</div>
+            <div1>
         </form>
 
         </div>

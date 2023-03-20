@@ -6,10 +6,11 @@
 
     <style>
 
-    .h1 {
-        color:#A020F0;
+      h1 {
+        color:#B96FF2;
         text-align: center;
-        text-font: Inter;
+        text-font: Serif;
+        font-size: 20px;
     }
     
     .head1 {
@@ -23,7 +24,8 @@
     
     body {
         font-family: verdana;
-        font-size: 25px; 
+        font-size: 20px; 
+        background-color: #E6E6FA; 
       }
     
     .topnav {
@@ -92,6 +94,15 @@
         }
       }
     
+      div.outset {
+        border-style: outset;
+        background-color: white;
+        
+        }
+
+        div1 {
+          font-size:18px;
+          }
     </style>
     
     <div class="topnav">
@@ -113,23 +124,27 @@
     {% endwith %}
     <div style="text-align: center;">
         <form class="form-signin" action = "https://habittpb.herokuapp.com/register", method="post">
-        <div style="display: inline-block; text-align: right;">
-            <h1 align = "center">Register</h1> <br />
+        <br>
+        <br>
+        <div class = "outset" style="display: inline-block; text-align: center; width:400px; height:400px" >
+            <h1 align = "center">Register</h1> 
         <body>
             {{ form.hidden_tag() }}
             <br>
             {{ wtf.form_field(form.username) }}
             <br>
-            {{ wtf.form_field(form.email) }}
+            {{ wtf.form_field(form.email, label='Email: ') }}
             <br>
-            <label>🔑</label>{{ wtf.form_field(form.password) }}
-        </div>
-        <br>
+            {{ wtf.form_field(form.password, label = '🔑') }}<label></label>
+            <br>
             <button class="button-37" type="submit" href={{ url_for('homepage') }} align = "center">Sign Up</a></button>
         <br>
-        Already have an account?<div><a href={{ url_for('login') }} style = "...">Log In</a></div>
+        <br>
+        <div1>Already have an account?<div><a href={{ url_for('login') }} style = "...">Log In</a></div></div1>
     </body>
         </form>
+      </div>
+
     </div>
 </head>
 
