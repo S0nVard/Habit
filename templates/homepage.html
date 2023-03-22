@@ -1,61 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+{%import "bootstrap/wtf.html" as wtf %}
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
-  .tooltip {
-    position: relative;
-  }
-  
-  .tooltip .tooltiptext {
-    font-size: 17px;
-    visibility: hidden;
-    width: 120px;
-    background-color: #D5BAEA;
-    color: black;
+  h1 {
+    color:#B96FF2;
     text-align: center;
-    border-radius: 4px;
-    padding: 1px 0;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -60px;
-  
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-  }
-  
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-  }
-    form {
-        margin: 50px;
-        padding: 5px;
-        display: inline-block;
-        position: absolute;
-  
-      }
-      
-      form input {
-        border: none;
-        background: transparent;
-        border-bottom: 1px solid #fff;
-        outline: none;
-        bottom: 50px;
-        font-size: 20px;
-      }
-      
-        form button {
-        background: transparent;
-        border: 0;
-        color: #fff;
-      }
+    text-font: Serif;
+    font-size: 20px;
+}
+
+.head1 {
+    font-size:40px;
+    color:#ffffff;
+    font-weight:bold;
+    background-color: #B96FF2;
+    text-align: left;
+    text-font: Inter;
+}
+
 body {
-    bottom: 200px;
-    left: 400px;
-    color: #333;
+    font-family: verdana;
+    font-size: 20px; 
+    background-color: #E6E6FA  ;
+  }
+
+body1 {
+    font-family: verdana;
+    font-size: 14px; 
+  }
+
+.topnav {
+  overflow: hidden;
+  background-color: #B96FF2;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+footer {
+    width: 100%;
+    bottom: 0px;
+    background-color: #B96FF2;
+    color: #fff;
     position: absolute;
-    text-align:center;
-    font-size:34px;
+    text-align:right;
+    font-size:10px;
 }
 .button-37 {
     background-color: #9747FF;
@@ -89,17 +98,98 @@ body {
       padding: 10px 30px;
     }
   }
+
+div.outset {
+border-style: outset;
+background-color: white;
+align: center; 
+
+}
+
+div1 {
+  font-size:18px;
+  }
+
+
+  .tooltip {
+    position: relative;
+  }
+    
+  .tooltip .tooltiptext {
+    font-size: 17px;
+    visibility: hidden;
+    width: 120px;
+    background-color: #D5BAEA;
+    color: black;
+    text-align: center;
+    border-radius: 4px;
+    padding: 1px 0;
+    z-index: 1;
+    bottom: 100%;
+    
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+    }
+    
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    }
+
+    
+form {
+  display: inline-block;
+}
+      
+form input {
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  bottom: 50px;
+  font-size: 20px;
+  }
+      
+form button {
+  background: transparent;
+  border: 0;
+  color: #fff;
+}
+
 </style>
 
-<body>
-    <form action="{{ url_for("homepage")}}", method="post" >
-        <br><div class="tooltip">What is your long-term goal?
-          <span class="tooltiptext">This should be the goal that you want to work on for the next 3 weeks.</span>
-        </div></br>
-        <input type="text" name="goal" placeholder = "E.g. Be a better friend."/></br>
-        <button class="button-37" type="submit">Start</button>
-    </form></br>
-    
-</body>
+<div class="topnav">
+    <head>
+      <div class="head1">HubIt</div></header>
+  </div>
+    </head>
+</div>
+
+
+    <div style="text-align: center;">
+      <body>
+        <form action="{{ url_for("homepage")}}", method="post" >
+        <br>
+        <br>
+        <div class = "outset" style="display: inline-block; text-align: center; width:1000px; height:400px" >
+            <br>
+            <br>
+            <p><small>Think about a goal you want to work towards in the upcoming 3 weeks. Make it as specific as you can. </small></p>
+            <br>
+            <div class="tooltip">What is your long-term goal?
+              <br>
+              <br>
+            <input type="text" name="goal" placeholder = "E.g. Be a better friend."/></br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <button class="button-37" type="submit">Start</button>
+            </div>
+        </form></br>
+        
+    </body>
+    </div>
+</html>
 
 <html>
