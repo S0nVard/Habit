@@ -23,9 +23,10 @@
     }
     
     body {
-        font-family: verdana;
+        font-family: Georgia, serif;
         font-size: 20px; 
-        background-color: #E6E6FA; 
+        background-color: #E6E6FA;
+        align: right 
       }
     
     .topnav {
@@ -81,6 +82,7 @@
         user-select: none;
         -webkit-user-select: none;
         touch-action: manipulation;
+        width: 300px;
       }
       
       .button-37:hover {
@@ -101,7 +103,7 @@
         }
 
         div1 {
-          font-size:18px;
+          font-size:15px;
           }
     </style>
     
@@ -136,6 +138,7 @@
             {{ wtf.form_field(form.email, label='Email: ') }}
             <br>
             {{ wtf.form_field(form.password, label = '🔑') }}<label></label>
+            <br>
             <br>
             <button class="button-37" type="submit" href={{ url_for('homepage') }} align = "center">Sign Up</a></button>
         <br>
