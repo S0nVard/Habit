@@ -1,25 +1,25 @@
 {% extends "layout.html" %}
 {% block header%}
-<div1>
+<div class = "new">
   <h1>My goal is {{ goal }}</h1>
-  </div1>
+</div>
   <br>
   <br>
-  <div2>
+  <div class = "habit">
   <form action="{{ url_for('add_habit')}}", method="post" >
     <input type="text" name="habit" placeholder = "Add a new habit here"/></br>
     <button class="button-37" type="submit">+</button>
   </form></br>
-  </div2>
+  </div>
   <br>
   <br>
-  <div3>
+  <div class = "track">
   {%for habit in habits%}
     <h1 class="tooltip">{{ habit.name }}</h1> 
     <br>
     <progress id="file" max="100" value="{{ habit.completion }}" height='100px' width = '500px'> {{ habit.completion }} </progress>
   {%endfor%}
-  <div3>
+  <div>
 {% endblock %} 
   
   
@@ -31,14 +31,14 @@
   
   }
   
-  div1 {
+  .new {
     text-align:center;  
   }
 
-  div2 {
+  .habit {
     text-align:center;
   }
-  div3 {
+  .track {
     align: left;
     outline: none; 
     margin-left: 50px; 
