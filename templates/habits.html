@@ -1,4 +1,5 @@
-
+{% extends "layout.html" %}
+{% block header%}
 <div class = "new">
   <h1>My goal is {{ goal }}</h1>
 </div>
@@ -19,70 +20,74 @@
     <progress id="file" max="100" value="{{ habit.completion }}" height='100px' width = '500px'> {{ habit.completion }} </progress>
   {%endfor%}
   <div>
+{% endblock %} 
   
   
   
 <style>
 
-  .new {
-    text-align:center;  
-    text-color: #B96FF2;
-  }
+.new {
+  text-align:center;  
+  text-color: #B96FF2;
+}
 
-  .habit {
-    align:center;
-  }
-  .track {
-    align: center;
-    outline: none; 
-    margin-left: 50px; 
-  }
-      .button-37 {
-          background-color: #9747FF;
-          border: 1px solid #9747FF;
-          border-radius: 100px;
-          box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
-          box-sizing: border-box;
-          color: white;
-          cursor: pointer;
-          font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
-          font-size: 16px;
-          font-weight: 400;
-          outline: none;
-          outline: 0;
-          padding: 10px 25px;
-          text-align: center;
-          transform: translateY(0);
-          transition: transform 150ms, box-shadow 150ms;
-          user-select: none;
-          -webkit-user-select: none;
-          touch-action: manipulation;
-          width: 70px;
-        }
+.habit {
+  align:center;
+}
+
+.track {
+  align: center;
+  outline: none; 
+  margin-left: 50px; 
+}
+
+.button-37 {
+  background-color: #9747FF;
+  border: 1px solid #9747FF;
+  border-radius: 100px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 10px 25px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 70px;
+}
         
-        .button-37:hover {
-          box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
-          transform: translateY(-2px);
-        }
+.button-37:hover {
+  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+  transform: translateY(-2px);
+}
         
-        @media (min-width: 768px) {
-          .button-37 {
-            padding: 10px 30px;
-          }
-        }
-    form input {
-    border: none;
-    background: transparent;
-    border-bottom: 1px solid #fff;
-    outline: none;
-    bottom: 50px;
-    font-size: 20px;
-    }
+@media (min-width: 768px) {
+.button-37 {
+  padding: 10px 30px;
+  }
+}
     
-    progress {
-      height: 100px;
-      width: 600px
-    }
+form input {
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  bottom: 50px;
+  font-size: 20px;
+}
+    
+progress {
+  height: 100px;
+  width: 600px
+}
 
 
 
