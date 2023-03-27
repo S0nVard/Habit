@@ -1,25 +1,27 @@
 {% extends "layout.html" %}
 {% block header%}
 <div class = "new">
-  <h1>My goal is {{ goal }}</h1>
+  <body>
+  <h2>My goal is {{ goal }}</h2>
+  </body>
 </div>
   <br>
   <br>
-  <div class = "habit">
-  <form action="{{ url_for('add_habit')}}", method="post" >
-    <input type="text" name="habit" placeholder = "Add a new habit here"/></br>
-    <button class="button-37" type="submit">+</button>
-  </form></br>
-  </div>
+<div class = "habit">
+<form action="{{ url_for('add_habit')}}", method="post" >
+    input type="text" name="habit" placeholder = "Add a new habit here"/></br>
+  <button class="button-37" type="submit">+</button>
+</form></br>
+</div>
   <br>
   <br>
-  <div class = "track">
-  {%for habit in habits%}
-    <h1 class="tooltip">{{ habit.name }}</h1> 
-    <br>
-    <progress id="file" max="100" value="{{ habit.completion }}" height='100px' width = '500px'> {{ habit.completion }} </progress>
-  {%endfor%}
-  <div>
+<div class = "track">
+{%for habit in habits%}
+  <h1 class="tooltip">{{ habit.name }}</h1> 
+  <br>
+  <progress id="file" max="100" value="{{ habit.completion }}" height='100px' width = '500px'> {{ habit.completion }} </progress>
+{%endfor%}
+<div>
 {% endblock %} 
   
   
@@ -92,27 +94,3 @@ progress {
 
 
 </style>
-    .tooltip {
-      position: relative;
-      
-      
-    }
-    
-    .tooltip .tooltiptext {
-      font-size: 17px;
-      visibility: hidden;
-      width: 120px;
-      background-color: #D5BAEA;
-      color: black;
-      text-align: center;
-      border-radius: 4px;
-      padding: 1px 0;
-    
-      /* Position the tooltip */
-      position: absolute;
-      z-index: 1;
-    }
-    
-    .tooltip:hover .tooltiptext {
-      visibility: visible;
-    }
