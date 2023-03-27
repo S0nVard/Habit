@@ -1,5 +1,4 @@
-{% extends "layout.html" %}
-{% block header%}
+
 <div class = "new">
   <h1>My goal is {{ goal }}</h1>
 </div>
@@ -20,7 +19,6 @@
     <progress id="file" max="100" value="{{ habit.completion }}" height='100px' width = '500px'> {{ habit.completion }} </progress>
   {%endfor%}
   <div>
-{% endblock %} 
   
   
   
@@ -84,7 +82,6 @@
     progress {
       height: 100px;
       width: 600px
-      align: center;
     }
 
 
