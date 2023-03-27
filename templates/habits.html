@@ -9,7 +9,7 @@
   <br>
 <div class = "habit">
 <form action="{{ url_for('add_habit')}}", method="post" >
-    input type="text" name="habit" placeholder = "Add a new habit here"/></br>
+    <input type="text" name="habit" placeholder = "Add a new habit here"/></br>
   <button class="button-37" type="submit">+</button>
 </form></br>
 </div>
@@ -29,6 +29,11 @@
 <style>
 
 .new {
+  text-align:center;  
+  text-color: #B96FF2;
+}
+
+.new body {
   text-align:center;  
   text-color: #B96FF2;
 }
