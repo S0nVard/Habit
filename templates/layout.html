@@ -2,7 +2,7 @@
 <html>
         
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 
 .head1 {
@@ -61,10 +61,11 @@ footer {
 
     <div>
     <body>  
-  <a href="{{ url_for('habits')}}">Habits</a>
-  <a href="{{ url_for('tree')}}">Tree</a>
+  <a href="{{ url_for('logout')}}"><i class="fa fa-sign-out" style="font-size:36px"></i>
+  </a>
   <a href="{{ url_for('badges')}}">Badges</a>
-  <a href="{{ url_for('logout')}}">Log out</a>
+  <a href="{{ url_for('tree')}}">Tree</a>
+  <a href="{{ url_for('habits')}}">Habits</a>
     </body>
   </div>
 </div>
