@@ -1,29 +1,42 @@
 {% extends "layout.html" %}
 {% block header%}
 <link rel="stylesheet" href="style.css">
-<div class="goal">
-  <br>
-  <h2> My goal is {{ goal }} </h2>
+<br>
+<br>
+<div class="goal" style="float:left; margin:3px">
+  <h3> My goal is {{ goal }} </h3>
 </div>
-<br>
-<br>
-<br>
-<div>
-  <div class = "habit">
+
+<div class = "habit" style="marin:3px, float left">
     <form action="{{ url_for('add_habit')}}", method="post" >
         <input type="text" name="habit" placeholder = "Add a new habit here"/>
         <br>
       <button class="button-37" type="submit">+</button>
     </form>
-    </div>
 </div>
-  
+
+<br>
+<br>
+<br>
+
+<br>
+
+<div class = "track">
+{%for habit in habits%}
+  <h1 class="tooltip">{{ habit.name }}</h1> 
+  <br>
+  <progress id="file" max="100" value="{{ habit.completion }}" height='100px' width = '500px'> {{ habit.completion }} </progress>
+{%endfor%}
+<div>
   
 <style>
+.track {
+  margin-left:300;
+}
+
 
 .habit {
   align:center; 
-  margin-left:200px;
 }
 
 form {
@@ -38,7 +51,6 @@ form input {
   outline: none;
   bottom: 50px;
   font-size: 20px;
-  margin-left: 350;
   }
 
 .goal {
@@ -47,7 +59,6 @@ form input {
   background:#E6E6FA; 
   width:400px;
   height:50px;
-  margin-left: 400px;
 }
 .button-37 {
   background-color: #9747FF;
