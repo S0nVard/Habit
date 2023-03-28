@@ -24,9 +24,9 @@
 
 <div class = "track">
 {%for habit in habits%}
-  <h1 class="tooltip">{{ habit.name }}</h1> 
+  <h4 class="tooltip">{{ habit.name }}</h4> 
   <br>
-  <progress id="file" max="100" value="{{ habit.completion }}" height='100px' width = '500px'> {{ habit.completion }} </progress>
+  <progress id="file" max="100" value="{{ habit.completion }}" style= "height:100px, width:500px" {{ habit.completion }} </progress>
 {%endfor%}
 <div>
   
@@ -60,16 +60,18 @@ form input {
   bottom: 50px;
   font-size: 20px;
   float:right;
+  margin-right: 100px;
   }
 
 .goal {
   align:center;
   text-align:center; 
   background:#E6E6FA; 
-  width:400px;
+  width:800px;
   height:50px;
   margin-left: 200px;
-  float left
+  float-left;
+
 }
 .button-37 {
   background-color: #9747FF;
