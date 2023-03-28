@@ -26,7 +26,7 @@
 {%for habit in habits%}
   <h4 class="tooltip">{{ habit.name }}</h4> 
   <br>
-  <progress id="file" max="100" value="{{ habit.completion }}" style= "height:100px, width:500px" {{ habit.completion }} </progress>
+  <progress id="file" max="100" value="{{ habit.completion }}" style= "height:100px, width:500px"> {{ habit.completion }} </progress>
 {%endfor%}
 <div>
   
