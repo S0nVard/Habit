@@ -1,8 +1,23 @@
 {% extends "layout.html" %}
 {% block header%}
+<link rel="stylesheet" href="style.css">
+<br>
+<br>
+<div class="goal" style="float:left; margin:3px">
+  <h3> My goal is {{ goal }} </h3>
+</div>
 
-<h2>Your main goal:{{ goal }}</h2>
 <style>
+.goal {
+    align:center;
+    text-align:center; 
+    background:#E6E6FA; 
+    width:800px;
+    height:50px;
+    margin-left: 200px;
+    float-left;
+  
+  }
 .collapsible {
     background-color: #CEADE9;
     color: white;
