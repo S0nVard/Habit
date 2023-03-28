@@ -7,8 +7,6 @@
   <h3> My goal is {{ goal }} </h3>
 </div>
 
-<h2 style="color:blue;">Your main goal:{{ goal }}</h2>
-
 <img src="{{ url_for('static', filename='images/badge.jpg') }}" alt="Badge", width=200px, height = 2000px>
 
 {%for habit in habits%}
@@ -29,7 +27,6 @@
     margin-left: 200px;
     float-left;
     text-color: black;
-  
   
   }
 </style>
