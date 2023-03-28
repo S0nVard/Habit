@@ -334,6 +334,12 @@ def add_badges(habit_id):
 
         return render_template("badge.html", goal=goal.goal, habit_complete=habit_complete, habits=habits)
 
+@app.route('/about')
+@login_required
+def about():
+    with app.app_context():
+        print(current_app.name)
+    return render_template("about.html")
 
 if __name__=="__main__":
     app.run(debug=True)
