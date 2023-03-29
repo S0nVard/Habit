@@ -25,15 +25,15 @@
 <div class="track">
 {%for habit in habits%}
   <h4 class="tooltip">{{ habit.name }}</h4> 
-  <br>
-  <progress id="file" max="100" value="{{ habit.completion }}"> {{ habit.completion }} </progress>
+  <progress id="file" max="100" value="{{ habit.completion }}", style="width:50px, height:300px"> {{ habit.completion }} </progress>
 {%endfor%}
 <div>
   
 <style>
-.track {
-  margin-left:300;
-}
+  progress {
+    height:50px;
+    width:600px;
+  }
 
 .file {
   height:100px; 
