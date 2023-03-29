@@ -7,6 +7,7 @@
   <h3> You have succeeded in </h3>
 </div>
 
+<div class = "badge">
 <img src="{{ url_for('static', filename='images/badge.jpg') }}" alt="Badge", width=200px, height = 200px>
 
 {%for habit in habits%}
@@ -15,6 +16,7 @@
 {%endfor%}
 
 <h4>Novels</h4>
+<div>
 {% endblock %}
 
 <style>
@@ -28,5 +30,12 @@
   text-align: center;    
   text-color: black;
   
+}
+
+.badge {
+  margin-left:30px;
+  background-color:#E6E6FA ;
+  outline:line;
+
 }
 </style>
