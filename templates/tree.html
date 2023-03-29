@@ -2,10 +2,12 @@
 {% block header%}
 <link rel="stylesheet" href="style.css">
 <br>
+<br>
 <div class="goal" style="float:left; align:center; margin-left:200px, marin-right:200px">
     <p style="color:#696666;font-size:20px"> My goal is {{ goal }} </p>
 </div>
-
+<br>
+<br>
 <style>
 
 .btn-outline-danger {
@@ -113,9 +115,9 @@
 
 </style>
 <br>
-{%for action in db_week_action%}
 <div class="actions">
-<section>
+    {%for action in db_week_action%}
+    <section>
     <div>
         {% if action.completed == true %}
         <p id = '{{ action.id }}' src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69"><button class="btn-outline-danger"><a class="todo" href="{{ url_for("change_status", action_id=action.id) }}"><s>{{action.name}}</s></a></button>
@@ -126,9 +128,9 @@
         {% endif %}
         
     </div>
-</section>
-<div>
-{%endfor%}
+    </section>
+    {%endfor%}
+</div>
 
 {% for habit in habits %}
 <button type="button" class="collapsible" contenteditable="true">{{ habit.name }}</button>
