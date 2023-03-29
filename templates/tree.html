@@ -2,7 +2,7 @@
 {% block header%}
 <link rel="stylesheet" href="style.css">
 <br>
-<div class="goal" style="float:left; align:center; margin-left:200px">
+<div class="goal" style="float:left; align:center; margin-left:200px, marin-right:200px">
     <p style="color:#696666;font-size:20px"> My goal is {{ goal }} </p>
 </div>
 
@@ -33,9 +33,8 @@
 
 .goal {
     align:center;
-    text-align:center; 
+    text-align:center;
     background:#E6E6FA; 
-    width:400px;
     height:50px;
   
   }
@@ -114,8 +113,8 @@
 
 </style>
 <br>
-<div class="actions">
 {%for action in db_week_action%}
+<div class="actions">
 <section>
     <div>
         {% if action.completed == true %}
@@ -128,8 +127,8 @@
         
     </div>
 </section>
-{%endfor%}
 <div>
+{%endfor%}
 
 {% for habit in habits %}
 <button type="button" class="collapsible" contenteditable="true">{{ habit.name }}</button>
