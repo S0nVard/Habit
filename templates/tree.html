@@ -2,7 +2,7 @@
 {% block header%}
 <link rel="stylesheet" href="style.css">
 <br>
-<div class="goal" style="float:left; align:center; margin-left:400px">
+<div class="goal" style="float:left; align:center; margin-left:200px">
     <p style="color:#696666;font-size:20px"> My goal is {{ goal }} </p>
 </div>
 
@@ -35,7 +35,7 @@
     align:center;
     text-align:center; 
     background:#E6E6FA; 
-    width:800px;
+    width:400px;
     height:50px;
   
   }
@@ -114,12 +114,13 @@
 
 </style>
 <br>
+<div class="actions">
 {%for action in db_week_action%}
 <section>
-    <div class="actions">
+    <div>
         {% if action.completed == true %}
-        <p id = '{{ action.id }}' src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69"><s><button class="btn-outline-danger"><a class="todo" href="{{ url_for("change_status", action_id=action.id) }}">{{action.name}}</a></button>
-        </s></p>
+        <p id = '{{ action.id }}' src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69"><button class="btn-outline-danger"><a class="todo" href="{{ url_for("change_status", action_id=action.id) }}"><s>{{action.name}}</s></a></button>
+        </p>
         {% else %}
         <p id = '{{ action.id }}' src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69"><button class="btn-outline-danger"><a class="todo" href="{{ url_for("change_status", action_id=action.id) }}">{{action.name}}</a></button></p>
         
@@ -128,6 +129,7 @@
     </div>
 </section>
 {%endfor%}
+<div>
 
 {% for habit in habits %}
 <button type="button" class="collapsible" contenteditable="true">{{ habit.name }}</button>
