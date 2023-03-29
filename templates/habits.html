@@ -4,10 +4,10 @@
 <br>
 <br>
 <div class="goal" style="float:left; margin:3px">
-  <h3> My goal is {{ goal }} </h3>
+  <p style="color:#696666;font-size:20px"> My goal is {{ goal }} </p>
 </div>
 
-<div class = "habit" style="marin:3px, float left">
+<div class="habit" style="marin:3px, float left">
     <form action="{{ url_for('add_habit')}}", method="post" >
         <input type="text" name="habit" placeholder = "Add a new habit here"/>
         <br>
@@ -22,7 +22,7 @@
 
 <br>
 
-<div class = "track">
+<div class="track">
 {%for habit in habits%}
   <h4 class="tooltip">{{ habit.name }}</h4> 
   <br>
@@ -71,8 +71,6 @@ form input {
   height:50px;
   margin-left: 200px;
   float-left;
-  text-color: black;
-
 
 }
 .button-37 {

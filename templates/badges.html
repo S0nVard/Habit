@@ -7,7 +7,7 @@
   <h3> You have succeeded in </h3>
 </div>
 
-<div class = "badge">
+<div class="badge">
 <img src="{{ url_for('static', filename='images/badge.jpg') }}" alt="Badge", width=200px, height = 200px>
 
 {%for habit in habits%}
@@ -16,8 +16,7 @@
 {%endfor%}
 
 <h4>Novels</h4>
-<div>
-{% endblock %}
+</div>
 
 <style>
 .goal {
@@ -26,16 +25,17 @@
   background:#E6E6FA; 
   width:800px;
   height:50px;
-  margin-left: 200px;
-  text-align: center;    
-  text-color: black;
+  margin-left:600px;
+  text-align:center;    
+  text-color:black;
   
 }
 
 .badge {
   margin-left:30px;
-  background-color:#E6E6FA ;
+  background-color:#E6E6FA;
   outline:line;
 
 }
 </style>
+{% endblock %} 
