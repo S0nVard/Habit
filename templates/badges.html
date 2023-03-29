@@ -3,18 +3,18 @@
 <link rel="stylesheet" href="style.css">
 <br>
 <br>
-<div class="goal" style="float:left; margin:3px">
-  <h3> You have succeeded in  {{ goal }} </h3>
+<div class="goal" style="align:center; margin:3px">
+  <h3> You have succeeded in </h3>
 </div>
 
-<img src="{{ url_for('static', filename='images/badge.jpg') }}" alt="Badge", width=200px, height = 2000px>
+<img src="{{ url_for('static', filename='images/badge.jpg') }}" alt="Badge", width=20px, height = 20px>
 
 {%for habit in habits%}
   <h1 class="tooltip">{{ habit.name }}</h1> 
-  <img src="{{ url_for('static', filename='images/badge.jpg') }}" alt="Badge", width=200px, height = 2000px>
+  <img src="{{ url_for('static', filename='images/badge.jpg') }}" alt="Badge", width=20px, height = 20px>
 {%endfor%}
 
-<h1>Novels</h>
+<h4>Novels</h4>
 {% endblock %}
 
 <style>
