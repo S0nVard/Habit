@@ -17,8 +17,8 @@
 <div>
   {%for habit in habits%}
   <section>
-  <div>
-      <img id = '{{habit.id}}' src="{{ url_for('static', filename='images/badge.jpg') }}" alt="Badge", width=200px, height = 200px>
+  <div class='badge'>
+      <img src="{{ url_for('static', filename='images/badge.jpg') }}" alt="Badge", width=200px, height = 200px>
       <h1>{{habit.name}}</h1>    
   </div>
   </section>
