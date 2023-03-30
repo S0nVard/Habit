@@ -310,12 +310,12 @@ def change_status(action_id):
     return redirect(url_for("tree"))
 
 
-@app.route('/delete/<action_id>', methods=['POST','GET'])
+@app.route('/delete/<id>', methods=['GET'])
 @login_required
-def delete_action(action_id):
+def delete_action(id):
     with app.app_context():
         print(current_app.name)
-    action_del = Action.query.get(id=action_id)
+    action_del = Action.query.get(id)
     db.session.delete(action_del)
     db.session.commit()
     return redirect(url_for('tree'))
