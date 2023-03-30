@@ -327,8 +327,12 @@ def badges():
         print(current_app.name)
     goal = session['goal']
     habits = Habit.query.filter_by(big_goal_id=goal.id).all()
-    db.session.commit()
-    return render_template("badges.html", goal=goal.goal, habits=habits)
+    for habit in habits: 
+        habitner = habits.query.filter_by(habit_completion=habit.completion).all()
+        if habit.completion == 1:
+            db.session.commit()
+    
+    return render_template("badges.html", goal=goal.goal, habits=habits, habitner=habitner)
 
 @app.route('/about')
 @login_required
