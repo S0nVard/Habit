@@ -325,9 +325,10 @@ def delete(id):
 def badges():
     with app.app_context():
         print(current_app.name)
-    habits = Habit.query.filter_by(completion=1).all()
+    goal = session['goal']
+    habits = Habit.query.filter_by(big_goal_id=goal.id).all()
     db.session.commit()
-    return render_template("badges.html", habits=habits)
+    return render_template("badges.html", goal=goal.goal, habits=habits)
 
 @app.route('/about')
 @login_required
