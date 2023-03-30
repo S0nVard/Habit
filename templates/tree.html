@@ -121,7 +121,7 @@
     <section>
     <div>
         {% if action.completed == true %}
-        <p id = '{{ action.id }}' src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69"><button class="btn-outline-danger"><a class="todo" href="{{ url_for("change_status", action_id=action.id) }}"><s>{{action.name}}</s><a href="{{ url_for("delete", action_id=action.id) }}">x</a></a></button>
+        <p id = '{{ action.id }}' src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69"><button class="btn-outline-danger"><a class="todo" href="{{ url_for("change_status", action_id=action.id) }}"><s>{{action.name}}</s><a class="todo" href="{{url_for("delete", action_id=action.id)}}">x</a></a></button>
         </p>
         {% else %}
         <p id = '{{ action.id }}' src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69"><button class="btn-outline-danger"><a class="todo" href="{{ url_for("change_status", action_id=action.id) }}">{{action.name}}</a></button></p>

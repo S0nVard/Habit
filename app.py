@@ -310,7 +310,7 @@ def change_status(action_id):
     return redirect(url_for("tree"))
 
 
-@app.route('/delete/<action_id>', methods=['GET'])
+@app.route('/delete/<action_id>', methods=['POST','GET'])
 @login_required
 def delete_action(action_id):
     with app.app_context():
