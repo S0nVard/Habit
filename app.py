@@ -329,20 +329,17 @@ def badges():
     print(f"retrieved your goal {goal}")
     return render_template("badges.html", goal=goal.goal)
 
-@app.route('/add_badges/<habit_id>', methods=['POST', 'GET'])
+@app.route('/add_badges/<id>', methods=['POST', 'GET'])
 @login_required
-def add_badges(habit_id):
+def add_badges(id):
     with app.app_context():
         print(current_app.name)
     goal = session['goal']
-    habits = Habit.query.filter_by(id=habit.id).all()
-    for habit in habits: 
-        if habit.completion == 1:
-            habit_complete = Habit.query.order_by(Habit.id).all()
-            print(habit_complete)
-            print(f"retrieved your goal {goal}")
-
-        return render_template("badge.html", goal=goal.goal, habit_complete=habit_complete, habits=habits)
+    habits = Habit.query.filter_by(big_goal_id=goal.id).all()
+    if Habit.completion == 1:
+        db.session.commit()
+    print(Habit.name, Habit.completion)
+    return render_template("badge.html", goal=goal.goal, habits=habits)
 
 @app.route('/about')
 @login_required

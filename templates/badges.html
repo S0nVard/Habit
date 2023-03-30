@@ -11,12 +11,26 @@
 <img src="{{ url_for('static', filename='images/badge.jpg') }}" alt="Badge", width=200px, height = 200px>
 
 {%for habit in habits%}
-  <h1 class="tooltip">{{ habit.name }}</h1> 
+  {% if Habit.completion == 1 %}
   <img src="{{ url_for('static', filename='images/badge.jpg') }}" alt="Badge", width=200px, height = 200px>
+  <h1>{{habit.name}}</h1>
 {%endfor%}
+
 
 <h4>Novels</h4>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style>
 .goal {
