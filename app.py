@@ -326,7 +326,6 @@ def badges():
     with app.app_context():
         print(current_app.name)
     habits = Habit.query.filter_by(completion=1).all()
-    db.session.add(habits)
     db.session.commit()
     return render_template("badges.html", habits=habits)
 
