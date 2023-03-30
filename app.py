@@ -313,6 +313,8 @@ def change_status(action_id):
 @app.route('/delete_action/<action_id>', methods=['GET'])
 @login_required
 def delete_action(action_id):
+    with app.app_context():
+        print(current_app.name)
     action_del = Action.query.get(id=action_id)
     db.session.delete(action_del)
     db.session.commit()
