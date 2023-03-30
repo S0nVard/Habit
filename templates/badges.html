@@ -12,28 +12,14 @@
 <h4>Novels</h4>
 </div>
 
-{%for habit in habits%}
-  {% if habit.completion = 1 %}
-  <div>
-  <img src="{{ url_for('static', filename='images/badge.jpg') }}" alt="Badge", width=200px, height = 200px>
-  <h1>{{habit.name}}</h1>
-  </div>
-{%endfor%}
-
 
 
 <div>
   {%for habit in habits%}
   <section>
   <div>
-      {% if habit.completion == 1 %}
       <img id = '{{habit.id}}' src="{{ url_for('static', filename='images/badge.jpg') }}" alt="Badge", width=200px, height = 200px>
-      <h1>{{habit.name}}</h1>
-
-      {% else %}
-      <p>{{habit.name}} in progress.</p>
-      {% endif %}
-    
+      <h1>{{habit.name}}</h1>    
   </div>
   </section>
   {%endfor%}
