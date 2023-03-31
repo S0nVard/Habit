@@ -1,13 +1,15 @@
 {% extends "layout.html" %}
 {% block header%}
 <link rel="stylesheet" href="style.css">
+
 <br>
 <br>
-<div class="goal" style="float:left; align:center; margin-left:200px">
-    <p style="font-size:20px"> My goal is {{ goal }} </p>
+<div class="goal" style="float:left; align:center; margin-left:200px; text-font: Georgia, serif">
+    <p style="font-size:20px">My goal is {{ goal }}</p>
 </div>
 <br>
 <br>
+
 <style>
 
 .btn-outline-danger {
@@ -35,10 +37,14 @@
 
 .goal {
     align:center;
-    text-align:center;
+    text-align:center; 
     background:#E6E6FA; 
+    width:800px;
     height:50px;
-    width: 600px;
+    margin-left:600px;
+    text-align:center;    
+    text-color:black;
+    
   
   }
 .collapsible {
